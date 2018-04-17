@@ -1,0 +1,29 @@
+package
+
+import org.apache.ibatis.annotations.Param;
+
+    ${package}.${moduleName}.dao;
+
+import ${package}.${moduleName}.entity.${className}Entity;
+import com.baomidou.mybatisplus.mapper.BaseMapper;
+
+/**
+ * ${comments}
+ * 
+ * @author ${author}
+ * @email ${email}
+ * @date ${datetime}
+ */
+public interface ${className}Dao extends BaseMapper<${className}Entity> {
+
+    int add${className}(${className} ${classname});
+
+	int deleteBy${className}Id(@Param("id") String id);
+
+    int update${className}(${className} ${classname});
+
+    ${className} selectOneBy${className}Id(@Param("id") String id);
+
+    List<${className}> selectAll();
+
+}
