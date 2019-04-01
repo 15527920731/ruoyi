@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.ChargesMapper">
+    
+    <resultMap type="Charges" id="ChargesResult">
+        <result property="id"    column="id"    />
+        <result property="wuSe"    column="wu_se"    />
+        <result property="caiSe"    column="cai_se"    />
+        <result property="hongBaoShi"    column="hong_bao_shi"    />
+        <result property="lanBaoShi"    column="lan_bao_shi"    />
+        <result property="zuMu"    column="zu_mu"    />
+        <result property="shouShi"    column="shou_shi"    />
+        <result property="qiTa"    column="qi_ta"    />
+        <result property="pinPai"    column="pin_pai"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+	
+	<sql id="selectChargesVo">
+        select id, wu_se, cai_se, hong_bao_shi, lan_bao_shi, zu_mu, shou_shi, qi_ta, pin_pai, update_by from sys_charges
+    </sql>
+	
+    <select id="selectChargesList" parameterType="Charges" resultMap="ChargesResult">
+        <include refid="selectChargesVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="wuSe != null "> and wu_se = #{wuSe}</if>
+             <if test="caiSe != null "> and cai_se = #{caiSe}</if>
+             <if test="hongBaoShi != null "> and hong_bao_shi = #{hongBaoShi}</if>
+             <if test="lanBaoShi != null "> and lan_bao_shi = #{lanBaoShi}</if>
+             <if test="zuMu != null "> and zu_mu = #{zuMu}</if>
+             <if test="shouShi != null "> and shou_shi = #{shouShi}</if>
+             <if test="qiTa != null "> and qi_ta = #{qiTa}</if>
+             <if test="pinPai != null "> and pin_pai = #{pinPai}</if>
+             <if test="updateBy != null "> and update_by = #{updateBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectChargesById" parameterType="Long" resultMap="ChargesResult">
+        <include refid="selectChargesVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertCharges" parameterType="Charges" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_charges
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="wuSe != null  ">wu_se,</if>
+			<if test="caiSe != null  ">cai_se,</if>
+			<if test="hongBaoShi != null  ">hong_bao_shi,</if>
+			<if test="lanBaoShi != null  ">lan_bao_shi,</if>
+			<if test="zuMu != null  ">zu_mu,</if>
+			<if test="shouShi != null  ">shou_shi,</if>
+			<if test="qiTa != null  ">qi_ta,</if>
+			<if test="pinPai != null  ">pin_pai,</if>
+			<if test="updateBy != null  ">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="wuSe != null  ">#{wuSe},</if>
+			<if test="caiSe != null  ">#{caiSe},</if>
+			<if test="hongBaoShi != null  ">#{hongBaoShi},</if>
+			<if test="lanBaoShi != null  ">#{lanBaoShi},</if>
+			<if test="zuMu != null  ">#{zuMu},</if>
+			<if test="shouShi != null  ">#{shouShi},</if>
+			<if test="qiTa != null  ">#{qiTa},</if>
+			<if test="pinPai != null  ">#{pinPai},</if>
+			<if test="updateBy != null  ">#{updateBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateCharges" parameterType="Charges">
+        update sys_charges
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="wuSe != null  ">wu_se = #{wuSe},</if>
+            <if test="caiSe != null  ">cai_se = #{caiSe},</if>
+            <if test="hongBaoShi != null  ">hong_bao_shi = #{hongBaoShi},</if>
+            <if test="lanBaoShi != null  ">lan_bao_shi = #{lanBaoShi},</if>
+            <if test="zuMu != null  ">zu_mu = #{zuMu},</if>
+            <if test="shouShi != null  ">shou_shi = #{shouShi},</if>
+            <if test="qiTa != null  ">qi_ta = #{qiTa},</if>
+            <if test="pinPai != null  ">pin_pai = #{pinPai},</if>
+            <if test="updateBy != null  ">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteChargesById" parameterType="Long">
+        delete from sys_charges where id = #{id}
+    </delete>
+	
+    <delete id="deleteChargesByIds" parameterType="String">
+        delete from sys_charges where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

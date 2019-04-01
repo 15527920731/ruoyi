@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.MemberMapper">
+    
+    <resultMap type="Member" id="MemberResult">
+        <result property="id"    column="id"    />
+        <result property="name"    column="name"    />
+        <result property="level"    column="level"    />
+        <result property="roleLevel"    column="role_level"    />
+        <result property="vipNo"    column="vip_no"    />
+        <result property="phone"    column="phone"    />
+        <result property="password"    column="password"    />
+        <result property="email"    column="email"    />
+        <result property="receivePhone"    column="receive_phone"    />
+        <result property="receiveAddress"    column="receive_address"    />
+        <result property="loginTime"    column="login_time"    />
+        <result property="endTime"    column="end_time"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="isEnable"    column="is_enable"    />
+        <result property="del"    column="del"    />
+        <result property="pre1"    column="pre1"    />
+        <result property="pre2"    column="pre2"    />
+    </resultMap>
+	
+	<sql id="selectMemberVo">
+        select id, name, level, role_level, vip_no, phone, password, email, receive_phone, receive_address, login_time, end_time, create_time, is_enable, del, pre1, pre2 from sys_member
+    </sql>
+	
+    <select id="selectMemberList" parameterType="Member" resultMap="MemberResult">
+        <include refid="selectMemberVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="name != null  and name != '' "> and name = #{name}</if>
+             <if test="level != null  and level != '' "> and level = #{level}</if>
+             <if test="roleLevel != null  and roleLevel != '' "> and role_level = #{roleLevel}</if>
+             <if test="vipNo != null  and vipNo != '' "> and vip_no = #{vipNo}</if>
+             <if test="phone != null  and phone != '' "> and phone = #{phone}</if>
+             <if test="password != null  and password != '' "> and password = #{password}</if>
+             <if test="email != null  and email != '' "> and email = #{email}</if>
+             <if test="receivePhone != null  and receivePhone != '' "> and receive_phone = #{receivePhone}</if>
+             <if test="receiveAddress != null  and receiveAddress != '' "> and receive_address = #{receiveAddress}</if>
+             <if test="loginTime != null "> and login_time = #{loginTime}</if>
+             <if test="endTime != null "> and end_time = #{endTime}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="isEnable != null "> and is_enable = #{isEnable}</if>
+             <if test="del != null "> and del = #{del}</if>
+             <if test="pre1 != null  and pre1 != '' "> and pre1 = #{pre1}</if>
+             <if test="pre2 != null "> and pre2 = #{pre2}</if>
+         </where>
+    </select>
+    
+    <select id="selectMemberById" parameterType="Long" resultMap="MemberResult">
+        <include refid="selectMemberVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectMemberByPhone" parameterType="String" resultMap="MemberResult">
+        <include refid="selectMemberVo"/>
+        where phone = #{phone}
+    </select>
+
+        
+    <insert id="insertMember" parameterType="Member" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_member
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="name != null  and name != ''  ">name,</if>
+			<if test="level != null  and level != ''  ">level,</if>
+			<if test="roleLevel != null  and roleLevel != ''  ">role_level,</if>
+			<if test="vipNo != null  and vipNo != ''  ">vip_no,</if>
+			<if test="phone != null  and phone != ''  ">phone,</if>
+			<if test="password != null  and password != ''  ">password,</if>
+			<if test="email != null  and email != ''  ">email,</if>
+			<if test="receivePhone != null  and receivePhone != ''  ">receive_phone,</if>
+			<if test="receiveAddress != null  and receiveAddress != ''  ">receive_address,</if>
+			<if test="loginTime != null  ">login_time,</if>
+			<if test="endTime != null  ">end_time,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="isEnable != null  ">is_enable,</if>
+			<if test="del != null  ">del,</if>
+			<if test="pre1 != null  and pre1 != ''  ">pre1,</if>
+			<if test="pre2 != null  ">pre2,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="name != null  and name != ''  ">#{name},</if>
+			<if test="level != null  and level != ''  ">#{level},</if>
+			<if test="roleLevel != null  and roleLevel != ''  ">#{roleLevel},</if>
+			<if test="vipNo != null  and vipNo != ''  ">#{vipNo},</if>
+			<if test="phone != null  and phone != ''  ">#{phone},</if>
+			<if test="password != null  and password != ''  ">#{password},</if>
+			<if test="email != null  and email != ''  ">#{email},</if>
+			<if test="receivePhone != null  and receivePhone != ''  ">#{receivePhone},</if>
+			<if test="receiveAddress != null  and receiveAddress != ''  ">#{receiveAddress},</if>
+			<if test="loginTime != null  ">#{loginTime},</if>
+			<if test="endTime != null  ">#{endTime},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="isEnable != null  ">#{isEnable},</if>
+			<if test="del != null  ">#{del},</if>
+			<if test="pre1 != null  and pre1 != ''  ">#{pre1},</if>
+			<if test="pre2 != null  ">#{pre2},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateMember" parameterType="Member">
+        update sys_member
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null  and name != ''  ">name = #{name},</if>
+            <if test="level != null  and level != ''  ">level = #{level},</if>
+            <if test="roleLevel != null  and roleLevel != ''  ">role_level = #{roleLevel},</if>
+            <if test="vipNo != null  and vipNo != ''  ">vip_no = #{vipNo},</if>
+            <if test="phone != null  and phone != ''  ">phone = #{phone},</if>
+            <if test="password != null  and password != ''  ">password = #{password},</if>
+            <if test="email != null  and email != ''  ">email = #{email},</if>
+            <if test="receivePhone != null  and receivePhone != ''  ">receive_phone = #{receivePhone},</if>
+            <if test="receiveAddress != null  and receiveAddress != ''  ">receive_address = #{receiveAddress},</if>
+            <if test="loginTime != null  ">login_time = #{loginTime},</if>
+            <if test="endTime != null  ">end_time = #{endTime},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="isEnable != null  ">is_enable = #{isEnable},</if>
+            <if test="del != null  ">del = #{del},</if>
+            <if test="pre1 != null  and pre1 != ''  ">pre1 = #{pre1},</if>
+            <if test="pre2 != null  ">pre2 = #{pre2},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteMemberById" parameterType="Long">
+        delete from sys_member where id = #{id}
+    </delete>
+	
+    <delete id="deleteMemberByIds" parameterType="String">
+        delete from sys_member where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

@@ -1,0 +1,509 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								库存地：<select name="kuCunDi">
+								<option value="">请选择</option>
+								<option value="境内">境内</option>
+								<option value="境外">境外</option>
+								<option value="现存">现存</option>
+								</select>
+							</li>
+							<li>
+								宝石琢形：<select name="baoShiZhuoXing" >
+								<option value="">请选择</option>
+								<option value="圆形刻面">圆形刻面</option>
+								<option value="椭圆刻面">椭圆刻面</option>
+								<option value="祖母绿刻面">祖母绿刻面</option>
+								<option value="水滴刻面">水滴刻面</option>
+								<option value="阿斯切形">阿斯切形</option>
+								<option value="马眼刻面">马眼刻面</option>
+								<option value="心形刻面">心形刻面</option>
+								<option value="公主方形">公主方形</option>
+								<option value="垫形刻面">垫形刻面</option>
+								<option value="雷迪恩刻面">雷迪恩刻面</option>
+								<option value="三角刻面">三角刻面</option>
+								<option value="异形刻面">异形刻面</option>
+							</select>
+							</li>
+							<!--<li>
+								颜色：<select name="yanSe">
+								<option value="">请选择</option>
+									<option value="D">D</option>
+									<option value="E">E</option>
+									<option value="F">F</option>
+									<option value="G">G</option>
+									<option value="H">H</option>
+									<option value="I">I</option>
+									<option value="J">J</option>
+									<option value="K">K</option>
+									<option value="M">M</option>
+								</select>
+							</li>-->
+							<li>
+								色调：<select name="seDiao">
+								<option value="">请选择</option>
+								<option value="Blue">Blue</option>
+								<option value="Yellow">Yellow</option>
+								<option value="Pink">Pink</option>
+								<option value="Green">Green</option>
+							</select>
+							</li>
+
+							<li>
+								色级：<select name="seJi">
+								<option value="">请选择</option>
+								<option value="Faint">Faint</option>
+								<option value="Very Light">Very Light</option>
+								<option value="Light">Light</option>
+								<option value="Fancy Light">Fancy Light</option>
+								<option value="Fancy">Fancy</option>
+								<option value="Fancy Intense">Fancy Intense</option>
+								<option value="Fancy Vivid">Fancy Vivid</option>
+								<option value="Fancy Deep">Fancy Deep</option>
+								<option value="Fancy Dark">Fancy Dark</option>
+							</select>
+							</li>
+
+
+							<li>
+								净度：<select name="jingDu">
+								<option value="">请选择</option>
+								<option value="FL/IF">FL/IF</option>
+								<option value="VVS1">VVS1</option>
+								<option value="VVS2">VVS2</option>
+								<option value="VS1">VS1</option>
+								<option value="VS2">VS2</option>
+								<option value="SI1">SI1</option>
+								<option value="SI2">SI2</option>
+								<option value="SI3">SI3</option>
+								<option value="P1">P1</option>
+								<option value="P2">P2</option>
+								</select>
+							</li>
+
+							<li>
+								抛光：<select name="paoGuang">
+								<option value="">请选择</option>
+								<option value="EX">EX</option>
+								<option value="VG">VG</option>
+								<option value="G">G</option>
+								<option value="Fiar">Fiar</option>
+								<option value="Poor">Poor</option>
+							</select>
+							</li>
+							<li>
+								对称性：<select name="duiChengXing">
+								<option value="">请选择</option>
+								<option value="EX">EX</option>
+								<option value="VG">VG</option>
+								<option value="G">G</option>
+								<option value="Fiar">Fiar</option>
+								<option value="Poor">Poor</option>
+							</select>
+							</li>
+							<li>
+								荧光：<select name="yingGuang" >
+								<option value="">请选择</option>
+								<option value="无">无</option>
+								<option value="微">微</option>
+								<option value="中">中</option>
+								<option value="强">强</option>
+							</select>
+							</li>
+							<li>
+								奶咖：<select name="naiKa" >
+								<option value="">请选择</option>
+								<option value="无">无</option>
+								<option value="浅奶">浅奶</option>
+								<option value="奶">奶</option>
+								<option value="浅咖">浅咖</option>
+								<option value="咖">咖</option>
+							</select>
+							</li>
+							<li>
+								鉴定机构：<select name="jianDingJiGou" >
+								<option value="">请选择</option>
+								<option value="GIA">GIA</option>
+								<option value="IGI">IGI</option>
+								<option value="HRD">HRD</option>
+								<option value="NGTC">NGTC</option>
+							</select>
+							</li>
+							<li>
+								商品上架状态：<select name="status" th:with="type=${@dict.getType('shang_jia_status')}">
+								<option value="">所有</option>
+								<option th:each="dict : ${type}" th:text="${dict.dictLabel}" th:value="${dict.dictValue}"></option>
+							</select>
+							</li>
+							<li>
+								上架员：<select name="approveBy"  id="approveBy">
+								<option value="">请选择</option>
+								</select>
+							</li>
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:jewelry:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:jewelry:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:jewelry:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+				<a class="btn btn-info" onclick="$.table.importExcel()" shiro:hasPermission="system:jewelry:import">
+					<i class="fa fa-upload"></i> 导入
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:jewelry:export">
+						<i class="fa fa-download"></i> 导出
+				 </a>
+
+
+				<a class="btn btn-info" onclick="$.operate.approvelAll()" shiro:hasPermission="system:jewelry:approvel">
+					<i class="fa "></i> 审核
+				</a>
+
+				<a class="btn btn-success" onclick="$.operate.upAll()" shiro:hasPermission="system:jewelry:up">
+					<i class="fa fa-upload"></i> 上架
+				</a>
+
+				<a class="btn btn-danger" onclick="$.operate.downAll()" shiro:hasPermission="system:jewelry:down">
+					<i class="fa fa-download"></i> 下架
+				</a>
+
+
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:jewelry:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:jewelry:remove')}]];
+        var prefix = ctx + "system/jewelry";
+
+        $(function() {
+
+
+
+			queryNameList();
+
+
+        	var ttt="彩色钻石";
+            var options = {
+                url: prefix + "/list?productType="+ttt,
+                createUrl: prefix + "/add/2",
+                updateUrl: prefix + "/edit/2/{id}",
+                removeUrl: prefix + "/remove",
+
+				approvelUrl: prefix + "/approvel",
+				upUrl: prefix + "/up",
+				downUrl: prefix + "/down",
+
+				exportUrl: prefix + "/export",
+
+				importUrl: prefix + "/importData",
+				importTemplateUrl: prefix + "/importTemplate",
+
+                modalName: "商品管理",
+		        showExport: true,
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'id', 
+					title : 'ID主键',
+					visible: false
+				},
+
+				/*{
+					field : 'jewelryType', 
+					title : '宝石品种',
+					sortable: true
+				},
+				{
+					field : 'shouShiType', 
+					title : '首饰类型',
+					sortable: true
+				},
+				{
+					field : 'pinPai', 
+					title : '品牌',
+					sortable: true
+				},
+				{
+					field : 'banXing', 
+					title : '版型',
+					sortable: true
+				},*/
+				{
+					field : 'kuCunDi', 
+					title : '库存地',
+					sortable: true
+				},
+					{
+						field : 'zhuangTai',
+						title : '状态',
+						sortable: true
+					},
+					{
+						field : 'huoHao',
+						title : '货号',
+						sortable: true
+					},
+				{
+					field : 'baoShiZhuoXing', 
+					title : '宝石琢形',
+					sortable: true
+				},
+
+					{
+						field : 'zhongLiang',
+						title : '重量',
+						sortable: true
+					},
+
+					{
+						field : 'chiCunGuiGe',
+						title : '尺寸规格',
+						sortable: true
+					},
+
+					{
+						field : 'yanSe',
+						title : '颜色',
+						sortable: true
+					},
+					{
+						field : 'jingDu',
+						title : '净度',
+						sortable: true
+					},
+					{
+						field : 'qieGong',
+						title : '切工',
+						sortable: true
+					},
+
+
+
+					{
+					field : 'paoGuang', 
+					title : '抛光',
+					sortable: true
+				},
+				{
+					field : 'duiChengXing', 
+					title : '对称性',
+					sortable: true
+				},
+					{
+						field : 'yingGuang',
+						title : '荧光',
+						sortable: true
+					},
+
+					{
+						field : 'naiKa',
+						title : '奶咖',
+						sortable: true
+					},
+					{
+						field : 'jianDingJiGou',
+						title : '鉴定机构',
+						sortable: true
+					},
+					{
+						field : 'zhengShuHao',
+						title : '证书号',
+						sortable: true
+					},
+					{
+						field : 'huoQi',
+						title : '货期',
+						sortable: true
+					},
+
+
+
+
+			/*	{
+					field : 'seDiao', 
+					title : '色调',
+					sortable: true
+				},
+
+				{
+					field : 'seJi', 
+					title : '色级',
+					sortable: true
+				},
+
+				{
+					field : 'caiDu', 
+					title : '彩度',
+					sortable: true
+				},
+				{
+					field : 'youHua', 
+					title : '优化',
+					sortable: true
+				},
+				{
+					field : 'huoCai', 
+					title : '火彩',
+					sortable: true
+				},
+
+
+
+*/
+
+
+				/*{
+					field : 'zhuShiZhong', 
+					title : '主石重',
+					sortable: true
+				},
+				{
+					field : 'peiShiZhong', 
+					title : '配石重',
+					sortable: true
+				},
+				{
+					field : 'jinZhong', 
+					title : '金重',
+					sortable: true
+				},
+				{
+					field : 'guiJinShu', 
+					title : '贵金属',
+					sortable: true
+				},
+				{
+					field : 'gongYi', 
+					title : '工艺',
+					sortable: true
+				},
+				{
+					field : 'status', 
+					title : '上架状态',
+					sortable: true
+				},*/
+				{
+					field : 'jinHuoJia', 
+					title : 'S端价格',
+					sortable: true
+				},
+
+					{
+						field : 'b3DuanJia',
+						title : 'B3端价格',
+						sortable: true
+					},
+				{
+					field : 'bDuanJia', 
+					title : 'B端价格',
+					sortable: true
+				},
+				{
+					field : 'cDuanJia', 
+					title : 'C端价格',
+					sortable: true
+				},
+					{
+						field : 'kuCun',
+						title : '库存',
+						sortable: true
+					},
+					{
+						field : 'status',
+						title : '上架状态',
+						formatter: function(value, item, index) {
+							if (item.status ==2) {
+								return '<span class="label label-success">已上架</span>';
+							}
+							else if (item.status == 3) {
+								return '<span class="label label-primary">已下架</span>';
+							}
+							else if (item.status ==1) {
+								return '<span class="label label-warning">待审核</span>';
+							}
+						}
+					},
+
+				{
+					field : 'approveBy', 
+					title : '上架员',
+					sortable: true
+				},
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+						return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+
+
+
+		function queryNameList(){
+			var html="";
+			var config = {
+				url: prefix+"/nameList",
+				type: "post",
+				dataType: "json",
+				success: function(result) {
+					var nameList=result.nameList;
+					for (var i = 0; i < nameList.length; i++) {
+						html=html+"<option value='"+nameList[i]+"'>"+nameList[i]+"</option>";
+					}
+					$("#approveBy").append(html);
+
+				}
+			};
+			$.ajax(config)
+		}
+    </script>
+</body>
+<form id="importForm" enctype="multipart/form-data" class="mt20 mb10" style="display: none;">
+	<div class="col-xs-offset-1">
+		<input type="file" id="file" name="file"/>
+		<div class="mt10 pt5">
+			<input type="checkbox" id="updateSupport" name="updateSupport" title="如果货号已经存在，更新这条数据。"> 是否更新已经存在的货号数据
+			<input type="hidden"   id="productType" name="productType" value="无色珠宝">
+			&nbsp;	<a onclick="$.table.importTemplate()" class="btn btn-default btn-xs"><i class="fa fa-file-excel-o"></i> 下载模板</a>
+		</div>
+		<font color="red" class="pull-left mt10">
+			提示：仅允许导入“xls”或“xlsx”格式文件！
+		</font>
+	</div>
+</form>
+</html>
+</html>

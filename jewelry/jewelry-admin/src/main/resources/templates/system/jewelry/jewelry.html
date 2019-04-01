@@ -1,0 +1,448 @@
+<!DOCTYPE HTML>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="gray-bg">
+    
+     <div class="container-div">
+		<div class="row">
+			<div class="col-sm-12 search-collapse">
+				<form id="formId">
+					<div class="select-list">
+						<ul>
+							<li>
+								商品类型：<input type="text" name="productType"/>
+							</li>
+
+							<li>
+								宝石品种：<input type="text" name="jewelryType"/>
+							</li>
+
+							<li>
+								首饰类型：<input type="text" name="shouShiType"/>
+							</li>
+
+							<li>
+								品牌：<input type="text" name="pinPai"/>
+							</li>
+
+							<li>
+								版型：<input type="text" name="banXing"/>
+							</li>
+
+							<li>
+								库存地：<input type="text" name="kuCunDi"/>
+							</li>
+
+							<li>
+								宝石琢形：<input type="text" name="baoShiZhuoXing"/>
+							</li>
+
+							<li>
+								货号：<input type="text" name="huoHao"/>
+							</li>
+
+							<li>
+								抛光：<input type="text" name="paoGuang"/>
+							</li>
+
+							<li>
+								对称性：<input type="text" name="duiChengXing"/>
+							</li>
+
+							<li>
+								状态：<input type="text" name="zhuangTai"/>
+							</li>
+
+							<li>
+								色调：<input type="text" name="seDiao"/>
+							</li>
+
+							<li>
+								颜色：<input type="text" name="yanSe"/>
+							</li>
+
+							<li>
+								净度：<input type="text" name="jingDu"/>
+							</li>
+
+							<li>
+								尺寸规格：<input type="text" name="chiCunGuiGe"/>
+							</li>
+
+							<li>
+								色级：<input type="text" name="seJi"/>
+							</li>
+
+							<li>
+								荧光：<input type="text" name="yingGuang"/>
+							</li>
+
+							<li>
+								彩度：<input type="text" name="caiDu"/>
+							</li>
+
+							<li>
+								优化：<input type="text" name="youHua"/>
+							</li>
+
+							<li>
+								火彩：<input type="text" name="huoCai"/>
+							</li>
+
+							<li>
+								奶咖：<input type="text" name="naiKa"/>
+							</li>
+
+							<li>
+								货期：<input type="text" name="huoQi"/>
+							</li>
+
+							<li>
+								切工：<input type="text" name="qieGong"/>
+							</li>
+
+							<li>
+								鉴定机构：<input type="text" name="jianDingJiGou"/>
+							</li>
+
+							<li>
+								证书号：<input type="text" name="zhengShuHao"/>
+							</li>
+
+							<li>
+								库存：<input type="text" name="kuCun"/>
+							</li>
+
+							<li>
+								重量：<input type="text" name="zhongLiang"/>
+							</li>
+
+							<li>
+								主石重：<input type="text" name="zhuShiZhong"/>
+							</li>
+
+							<li>
+								配石重：<input type="text" name="peiShiZhong"/>
+							</li>
+
+							<li>
+								金重：<input type="text" name="jinZhong"/>
+							</li>
+
+							<li>
+								贵金属：<input type="text" name="guiJinShu"/>
+							</li>
+
+							<li>
+								工艺：<input type="text" name="gongYi"/>
+							</li>
+
+							<li>
+								上架状态：<input type="text" name="status"/>
+							</li>
+
+							<li>
+								进货价：<input type="text" name="jinHuoJia"/>
+							</li>
+
+							<li>
+								B端价格：<input type="text" name="bDuanJia"/>
+							</li>
+
+							<li>
+								C端价格：<input type="text" name="cDuanJia"/>
+							</li>
+
+							<li>
+								图片：<input type="text" name="images"/>
+							</li>
+
+							<li>
+								视频：<input type="text" name="videos"/>
+							</li>
+
+							<li>
+								创建时间：<input type="text" name="createTime"/>
+							</li>
+
+							<li>
+								审核时间：<input type="text" name="approveTime"/>
+							</li>
+
+							<li>
+								审核人：<input type="text" name="approveBy"/>
+							</li>
+
+							<li>
+								<a class="btn btn-primary btn-rounded btn-sm" onclick="$.table.search()"><i class="fa fa-search"></i>&nbsp;搜索</a>
+								<a class="btn btn-warning btn-rounded btn-sm" onclick="$.form.reset()"><i class="fa fa-refresh"></i>&nbsp;重置</a>
+							</li>
+						</ul>
+					</div>
+				</form>
+			</div>
+			
+	        <div class="btn-group-sm" id="toolbar" role="group">
+				<a class="btn btn-success" onclick="$.operate.add()" shiro:hasPermission="system:jewelry:add">
+					<i class="fa fa-plus"></i> 添加
+				</a>
+				<a class="btn btn-primary btn-edit disabled" onclick="$.operate.edit()" shiro:hasPermission="system:jewelry:edit">
+					<i class="fa fa-edit"></i> 修改
+				</a>
+				<a class="btn btn-danger btn-del btn-del disabled" onclick="$.operate.removeAll()" shiro:hasPermission="system:jewelry:remove">
+					<i class="fa fa-remove"></i> 删除
+				</a>
+				<a class="btn btn-warning" onclick="$.table.exportExcel()" shiro:hasPermission="system:jewelry:export">
+						<i class="fa fa-download"></i> 导出
+				 </a>
+			</div>
+			<div class="col-sm-12 select-table table-striped">
+				<table id="bootstrap-table" data-mobile-responsive="true"></table>
+			</div>
+		</div>
+	</div>
+    <div th:include="include :: footer"></div>
+    <script th:inline="javascript">
+        var editFlag = [[${@permission.hasPermi('system:jewelry:edit')}]];
+        var removeFlag = [[${@permission.hasPermi('system:jewelry:remove')}]];
+        var prefix = ctx + "system/jewelry";
+
+        $(function() {
+            var options = {
+                url: prefix + "/list",
+                createUrl: prefix + "/add",
+                updateUrl: prefix + "/edit/{id}",
+                removeUrl: prefix + "/remove",
+				exportUrl: prefix + "/export",
+                modalName: "商品管理",
+		        showExport: true,
+                columns: [{
+		            checkbox: true
+		        },
+				{
+					field : 'id', 
+					title : 'ID主键',
+					visible: false
+				},
+				{
+					field : 'productType', 
+					title : '商品类型',
+					sortable: true
+				},
+				{
+					field : 'jewelryType', 
+					title : '宝石品种',
+					sortable: true
+				},
+				{
+					field : 'shouShiType', 
+					title : '首饰类型',
+					sortable: true
+				},
+				{
+					field : 'pinPai', 
+					title : '品牌',
+					sortable: true
+				},
+				{
+					field : 'banXing', 
+					title : '版型',
+					sortable: true
+				},
+				{
+					field : 'kuCunDi', 
+					title : '库存地',
+					sortable: true
+				},
+				{
+					field : 'baoShiZhuoXing', 
+					title : '宝石琢形',
+					sortable: true
+				},
+				{
+					field : 'huoHao', 
+					title : '货号',
+					sortable: true
+				},
+				{
+					field : 'paoGuang', 
+					title : '抛光',
+					sortable: true
+				},
+				{
+					field : 'duiChengXing', 
+					title : '对称性',
+					sortable: true
+				},
+				{
+					field : 'zhuangTai', 
+					title : '状态',
+					sortable: true
+				},
+				{
+					field : 'seDiao', 
+					title : '色调',
+					sortable: true
+				},
+				{
+					field : 'yanSe', 
+					title : '颜色',
+					sortable: true
+				},
+				{
+					field : 'jingDu', 
+					title : '净度',
+					sortable: true
+				},
+				{
+					field : 'chiCunGuiGe', 
+					title : '尺寸规格',
+					sortable: true
+				},
+				{
+					field : 'seJi', 
+					title : '色级',
+					sortable: true
+				},
+				{
+					field : 'yingGuang', 
+					title : '荧光',
+					sortable: true
+				},
+				{
+					field : 'caiDu', 
+					title : '彩度',
+					sortable: true
+				},
+				{
+					field : 'youHua', 
+					title : '优化',
+					sortable: true
+				},
+				{
+					field : 'huoCai', 
+					title : '火彩',
+					sortable: true
+				},
+				{
+					field : 'naiKa', 
+					title : '奶咖',
+					sortable: true
+				},
+				{
+					field : 'huoQi', 
+					title : '货期',
+					sortable: true
+				},
+				{
+					field : 'qieGong', 
+					title : '切工',
+					sortable: true
+				},
+				{
+					field : 'jianDingJiGou', 
+					title : '鉴定机构',
+					sortable: true
+				},
+				{
+					field : 'zhengShuHao', 
+					title : '证书号',
+					sortable: true
+				},
+				{
+					field : 'kuCun', 
+					title : '库存',
+					sortable: true
+				},
+				{
+					field : 'zhongLiang', 
+					title : '重量',
+					sortable: true
+				},
+				{
+					field : 'zhuShiZhong', 
+					title : '主石重',
+					sortable: true
+				},
+				{
+					field : 'peiShiZhong', 
+					title : '配石重',
+					sortable: true
+				},
+				{
+					field : 'jinZhong', 
+					title : '金重',
+					sortable: true
+				},
+				{
+					field : 'guiJinShu', 
+					title : '贵金属',
+					sortable: true
+				},
+				{
+					field : 'gongYi', 
+					title : '工艺',
+					sortable: true
+				},
+				{
+					field : 'status', 
+					title : '上架状态',
+					sortable: true
+				},
+				{
+					field : 'jinHuoJia', 
+					title : '进货价',
+					sortable: true
+				},
+				{
+					field : 'bDuanJia', 
+					title : 'B端价格',
+					sortable: true
+				},
+				{
+					field : 'cDuanJia', 
+					title : 'C端价格',
+					sortable: true
+				},
+				{
+					field : 'images', 
+					title : '图片',
+					sortable: true
+				},
+				{
+					field : 'videos', 
+					title : '视频',
+					sortable: true
+				},
+				{
+					field : 'createTime', 
+					title : '创建时间',
+					sortable: true
+				},
+				{
+					field : 'approveTime', 
+					title : '审核时间',
+					sortable: true
+				},
+				{
+					field : 'approveBy', 
+					title : '审核人',
+					sortable: true
+				},
+		        {
+		            title: '操作',
+		            align: 'center',
+		            formatter: function(value, row, index) {
+		            	var actions = [];
+		            	actions.push('<a class="btn btn-success btn-xs ' + editFlag + '" href="#" onclick="$.operate.edit(\'' + row.id + '\')"><i class="fa fa-edit"></i>编辑</a> ');
+                        actions.push('<a class="btn btn-danger btn-xs ' + removeFlag + '" href="#" onclick="$.operate.remove(\'' + row.id + '\')"><i class="fa fa-remove"></i>删除</a>');
+						return actions.join('');
+		            }
+		        }]
+            };
+            $.table.init(options);
+        });
+    </script>
+</body>
+</html>

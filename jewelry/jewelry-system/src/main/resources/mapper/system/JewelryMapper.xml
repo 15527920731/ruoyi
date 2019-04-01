@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.JewelryMapper">
+    
+    <resultMap type="Jewelry" id="JewelryResult">
+        <result property="id"    column="id"    />
+        <result property="productType"    column="product_type"    />
+        <result property="jewelryType"    column="jewelry_type"    />
+        <result property="shouShiType"    column="shou_shi_type"    />
+        <result property="pinPai"    column="pin_pai"    />
+        <result property="banXing"    column="ban_xing"    />
+        <result property="kuCunDi"    column="ku_cun_di"    />
+        <result property="baoShiZhuoXing"    column="bao_shi_zhuo_xing"    />
+        <result property="huoHao"    column="huo_hao"    />
+        <result property="paoGuang"    column="pao_guang"    />
+        <result property="duiChengXing"    column="dui_cheng_xing"    />
+        <result property="zhuangTai"    column="zhuang_tai"    />
+        <result property="seDiao"    column="se_diao"    />
+        <result property="yanSe"    column="yan_se"    />
+        <result property="jingDu"    column="jing_du"    />
+        <result property="chiCunGuiGe"    column="chi_cun_gui_ge"    />
+        <result property="seJi"    column="se_ji"    />
+        <result property="yingGuang"    column="ying_guang"    />
+        <result property="caiDu"    column="cai_du"    />
+        <result property="youHua"    column="you_hua"    />
+        <result property="huoCai"    column="huo_cai"    />
+        <result property="naiKa"    column="nai_ka"    />
+        <result property="huoQi"    column="huo_qi"    />
+        <result property="qieGong"    column="qie_gong"    />
+        <result property="jianDingJiGou"    column="jian_ding_ji_gou"    />
+        <result property="zhengShuHao"    column="zheng_shu_hao"    />
+        <result property="kuCun"    column="ku_cun"    />
+        <result property="zhongLiang"    column="zhong_liang"    />
+        <result property="zhuShiZhong"    column="zhu_shi_zhong"    />
+        <result property="peiShiZhong"    column="pei_shi_zhong"    />
+        <result property="jinZhong"    column="jin_zhong"    />
+        <result property="guiJinShu"    column="gui_jin_shu"    />
+        <result property="gongYi"    column="gong_yi"    />
+        <result property="status"    column="status"    />
+        <result property="jinHuoJia"    column="jin_huo_jia"    />
+        <result property="bDuanJia"    column="b_duan_jia"    />
+        <result property="cDuanJia"    column="c_duan_jia"    />
+        <result property="officeJia"    column="office_jia"    />
+
+
+
+
+        <result property="images"    column="images"    />
+        <result property="videos"    column="videos"    />
+        <result property="createTime"    column="create_time"    />
+        <result property="approveTime"    column="approve_time"    />
+        <result property="approveBy"    column="approve_by"    />
+    </resultMap>
+	
+	<sql id="selectJewelryVo">
+        select id, product_type, jewelry_type, shou_shi_type, pin_pai, ban_xing, ku_cun_di, bao_shi_zhuo_xing, huo_hao, pao_guang, dui_cheng_xing, zhuang_tai, se_diao, yan_se, jing_du, chi_cun_gui_ge, se_ji, ying_guang, cai_du, you_hua, huo_cai, nai_ka, huo_qi, qie_gong, jian_ding_ji_gou, zheng_shu_hao, ku_cun, zhong_liang, zhu_shi_zhong, pei_shi_zhong, jin_zhong, gui_jin_shu, gong_yi, status, jin_huo_jia, b_duan_jia, c_duan_jia,office_jia, images, videos, create_time, approve_time, approve_by from sys_jewelry
+    </sql>
+	
+    <select id="selectJewelryList" parameterType="Jewelry" resultMap="JewelryResult">
+        <include refid="selectJewelryVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="productType != null  and productType != '' "> and product_type = #{productType}</if>
+             <if test="jewelryType != null  and jewelryType != '' "> and jewelry_type = #{jewelryType}</if>
+             <if test="shouShiType != null  and shouShiType != '' "> and shou_shi_type = #{shouShiType}</if>
+             <if test="pinPai != null "> and pin_pai = #{pinPai}</if>
+             <if test="banXing != null  and banXing != '' "> and ban_xing = #{banXing}</if>
+             <if test="kuCunDi != null  and kuCunDi != '' "> and ku_cun_di = #{kuCunDi}</if>
+             <if test="baoShiZhuoXing != null  and baoShiZhuoXing != '' "> and bao_shi_zhuo_xing = #{baoShiZhuoXing}</if>
+             <if test="huoHao != null  and huoHao != '' "> and huo_hao = #{huoHao}</if>
+             <if test="paoGuang != null  and paoGuang != '' "> and pao_guang = #{paoGuang}</if>
+             <if test="duiChengXing != null  and duiChengXing != '' "> and dui_cheng_xing = #{duiChengXing}</if>
+             <if test="zhuangTai != null  and zhuangTai != '' "> and zhuang_tai = #{zhuangTai}</if>
+             <if test="seDiao != null  and seDiao != '' "> and se_diao = #{seDiao}</if>
+             <if test="yanSe != null  and yanSe != '' "> and yan_se = #{yanSe}</if>
+             <if test="jingDu != null  and jingDu != '' "> and jing_du = #{jingDu}</if>
+             <if test="chiCunGuiGe != null  and chiCunGuiGe != '' "> and chi_cun_gui_ge = #{chiCunGuiGe}</if>
+             <if test="seJi != null  and seJi != '' "> and se_ji = #{seJi}</if>
+             <if test="yingGuang != null  and yingGuang != '' "> and ying_guang = #{yingGuang}</if>
+             <if test="caiDu != null  and caiDu != '' "> and cai_du = #{caiDu}</if>
+             <if test="youHua != null  and youHua != '' "> and you_hua = #{youHua}</if>
+             <if test="huoCai != null  and huoCai != '' "> and huo_cai = #{huoCai}</if>
+             <if test="naiKa != null  and naiKa != '' "> and nai_ka = #{naiKa}</if>
+             <if test="huoQi != null  and huoQi != '' "> and huo_qi = #{huoQi}</if>
+             <if test="qieGong != null  and qieGong != '' "> and qie_gong = #{qieGong}</if>
+             <if test="jianDingJiGou != null  and jianDingJiGou != '' "> and jian_ding_ji_gou = #{jianDingJiGou}</if>
+             <if test="zhengShuHao != null  and zhengShuHao != '' "> and zheng_shu_hao = #{zhengShuHao}</if>
+             <if test="kuCun != null "> and ku_cun = #{kuCun}</if>
+             <if test="zhongLiang != null  and zhongLiang != '' "> and zhong_liang = #{zhongLiang}</if>
+             <if test="zhuShiZhong != null  and zhuShiZhong != '' "> and zhu_shi_zhong = #{zhuShiZhong}</if>
+             <if test="peiShiZhong != null  and peiShiZhong != '' "> and pei_shi_zhong = #{peiShiZhong}</if>
+             <if test="jinZhong != null  and jinZhong != '' "> and jin_zhong = #{jinZhong}</if>
+             <if test="guiJinShu != null  and guiJinShu != '' "> and gui_jin_shu = #{guiJinShu}</if>
+             <if test="gongYi != null  and gongYi != '' "> and gong_yi = #{gongYi}</if>
+             <if test="status != null  "> and status = #{status}</if>
+             <if test="jinHuoJia != null "> and jin_huo_jia = #{jinHuoJia}</if>
+             <if test="bDuanJia != null "> and b_duan_jia = #{bDuanJia}</if>
+             <if test="cDuanJia != null "> and c_duan_jia = #{cDuanJia}</if>
+
+            <if test="officeJia != null "> and office_jia = #{officeJia}</if>
+
+             <if test="images != null  and images != '' "> and images = #{images}</if>
+             <if test="videos != null  and videos != '' "> and videos = #{videos}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+             <if test="approveTime != null "> and approve_time = #{approveTime}</if>
+             <if test="approveBy != null  and approveBy != '' "> and approve_by = #{approveBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectJewelryById" parameterType="Long" resultMap="JewelryResult">
+        <include refid="selectJewelryVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertJewelry" parameterType="Jewelry" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_jewelry
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="productType != null  and productType != ''  ">product_type,</if>
+			<if test="jewelryType != null  and jewelryType != ''  ">jewelry_type,</if>
+			<if test="shouShiType != null  and shouShiType != ''  ">shou_shi_type,</if>
+			<if test="pinPai != null  ">pin_pai,</if>
+			<if test="banXing != null  and banXing != ''  ">ban_xing,</if>
+			<if test="kuCunDi != null  and kuCunDi != ''  ">ku_cun_di,</if>
+			<if test="baoShiZhuoXing != null  and baoShiZhuoXing != ''  ">bao_shi_zhuo_xing,</if>
+			<if test="huoHao != null  and huoHao != ''  ">huo_hao,</if>
+			<if test="paoGuang != null  and paoGuang != ''  ">pao_guang,</if>
+			<if test="duiChengXing != null  and duiChengXing != ''  ">dui_cheng_xing,</if>
+			<if test="zhuangTai != null  and zhuangTai != ''  ">zhuang_tai,</if>
+			<if test="seDiao != null  and seDiao != ''  ">se_diao,</if>
+			<if test="yanSe != null  and yanSe != ''  ">yan_se,</if>
+			<if test="jingDu != null  and jingDu != ''  ">jing_du,</if>
+			<if test="chiCunGuiGe != null  and chiCunGuiGe != ''  ">chi_cun_gui_ge,</if>
+			<if test="seJi != null  and seJi != ''  ">se_ji,</if>
+			<if test="yingGuang != null  and yingGuang != ''  ">ying_guang,</if>
+			<if test="caiDu != null  and caiDu != ''  ">cai_du,</if>
+			<if test="youHua != null  and youHua != ''  ">you_hua,</if>
+			<if test="huoCai != null  and huoCai != ''  ">huo_cai,</if>
+			<if test="naiKa != null  and naiKa != ''  ">nai_ka,</if>
+			<if test="huoQi != null  and huoQi != ''  ">huo_qi,</if>
+			<if test="qieGong != null  and qieGong != ''  ">qie_gong,</if>
+			<if test="jianDingJiGou != null  and jianDingJiGou != ''  ">jian_ding_ji_gou,</if>
+			<if test="zhengShuHao != null  and zhengShuHao != ''  ">zheng_shu_hao,</if>
+			<if test="kuCun != null  ">ku_cun,</if>
+			<if test="zhongLiang != null  and zhongLiang != ''  ">zhong_liang,</if>
+			<if test="zhuShiZhong != null  and zhuShiZhong != ''  ">zhu_shi_zhong,</if>
+			<if test="peiShiZhong != null  and peiShiZhong != ''  ">pei_shi_zhong,</if>
+			<if test="jinZhong != null  and jinZhong != ''  ">jin_zhong,</if>
+			<if test="guiJinShu != null  and guiJinShu != ''  ">gui_jin_shu,</if>
+			<if test="gongYi != null  and gongYi != ''  ">gong_yi,</if>
+			<if test="status != null  ">status,</if>
+			<if test="jinHuoJia != null  ">jin_huo_jia,</if>
+			<if test="bDuanJia != null  ">b_duan_jia,</if>
+			<if test="cDuanJia != null  ">c_duan_jia,</if>
+            <if test="officeJia != null "> office_jia ,</if>
+			<if test="images != null  and images != ''  ">images,</if>
+			<if test="videos != null  and videos != ''  ">videos,</if>
+			<if test="createTime != null  ">create_time,</if>
+			<if test="approveTime != null  ">approve_time,</if>
+			<if test="approveBy != null  and approveBy != ''  ">approve_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="productType != null  and productType != ''  ">#{productType},</if>
+			<if test="jewelryType != null  and jewelryType != ''  ">#{jewelryType},</if>
+			<if test="shouShiType != null  and shouShiType != ''  ">#{shouShiType},</if>
+			<if test="pinPai != null  ">#{pinPai},</if>
+			<if test="banXing != null  and banXing != ''  ">#{banXing},</if>
+			<if test="kuCunDi != null  and kuCunDi != ''  ">#{kuCunDi},</if>
+			<if test="baoShiZhuoXing != null  and baoShiZhuoXing != ''  ">#{baoShiZhuoXing},</if>
+			<if test="huoHao != null  and huoHao != ''  ">#{huoHao},</if>
+			<if test="paoGuang != null  and paoGuang != ''  ">#{paoGuang},</if>
+			<if test="duiChengXing != null  and duiChengXing != ''  ">#{duiChengXing},</if>
+			<if test="zhuangTai != null  and zhuangTai != ''  ">#{zhuangTai},</if>
+			<if test="seDiao != null  and seDiao != ''  ">#{seDiao},</if>
+			<if test="yanSe != null  and yanSe != ''  ">#{yanSe},</if>
+			<if test="jingDu != null  and jingDu != ''  ">#{jingDu},</if>
+			<if test="chiCunGuiGe != null  and chiCunGuiGe != ''  ">#{chiCunGuiGe},</if>
+			<if test="seJi != null  and seJi != ''  ">#{seJi},</if>
+			<if test="yingGuang != null  and yingGuang != ''  ">#{yingGuang},</if>
+			<if test="caiDu != null  and caiDu != ''  ">#{caiDu},</if>
+			<if test="youHua != null  and youHua != ''  ">#{youHua},</if>
+			<if test="huoCai != null  and huoCai != ''  ">#{huoCai},</if>
+			<if test="naiKa != null  and naiKa != ''  ">#{naiKa},</if>
+			<if test="huoQi != null  and huoQi != ''  ">#{huoQi},</if>
+			<if test="qieGong != null  and qieGong != ''  ">#{qieGong},</if>
+			<if test="jianDingJiGou != null  and jianDingJiGou != ''  ">#{jianDingJiGou},</if>
+			<if test="zhengShuHao != null  and zhengShuHao != ''  ">#{zhengShuHao},</if>
+			<if test="kuCun != null  ">#{kuCun},</if>
+			<if test="zhongLiang != null  and zhongLiang != ''  ">#{zhongLiang},</if>
+			<if test="zhuShiZhong != null  and zhuShiZhong != ''  ">#{zhuShiZhong},</if>
+			<if test="peiShiZhong != null  and peiShiZhong != ''  ">#{peiShiZhong},</if>
+			<if test="jinZhong != null  and jinZhong != ''  ">#{jinZhong},</if>
+			<if test="guiJinShu != null  and guiJinShu != ''  ">#{guiJinShu},</if>
+			<if test="gongYi != null  and gongYi != ''  ">#{gongYi},</if>
+			<if test="status != null  ">#{status},</if>
+			<if test="jinHuoJia != null  ">#{jinHuoJia},</if>
+			<if test="bDuanJia != null  ">#{bDuanJia},</if>
+			<if test="cDuanJia != null  ">#{cDuanJia},</if>
+            <if test="officeJia != null "> #{officeJia} ,</if>
+			<if test="images != null  and images != ''  ">#{images},</if>
+			<if test="videos != null  and videos != ''  ">#{videos},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+			<if test="approveTime != null  ">#{approveTime},</if>
+			<if test="approveBy != null  and approveBy != ''  ">#{approveBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateJewelry" parameterType="Jewelry">
+        update sys_jewelry
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="productType != null  and productType != ''  ">product_type = #{productType},</if>
+            <if test="jewelryType != null  and jewelryType != ''  ">jewelry_type = #{jewelryType},</if>
+            <if test="shouShiType != null  and shouShiType != ''  ">shou_shi_type = #{shouShiType},</if>
+            <if test="pinPai != null  ">pin_pai = #{pinPai},</if>
+            <if test="banXing != null  and banXing != ''  ">ban_xing = #{banXing},</if>
+            <if test="kuCunDi != null  and kuCunDi != ''  ">ku_cun_di = #{kuCunDi},</if>
+            <if test="baoShiZhuoXing != null  and baoShiZhuoXing != ''  ">bao_shi_zhuo_xing = #{baoShiZhuoXing},</if>
+            <if test="huoHao != null  and huoHao != ''  ">huo_hao = #{huoHao},</if>
+            <if test="paoGuang != null  and paoGuang != ''  ">pao_guang = #{paoGuang},</if>
+            <if test="duiChengXing != null  and duiChengXing != ''  ">dui_cheng_xing = #{duiChengXing},</if>
+            <if test="zhuangTai != null  and zhuangTai != ''  ">zhuang_tai = #{zhuangTai},</if>
+            <if test="seDiao != null  and seDiao != ''  ">se_diao = #{seDiao},</if>
+            <if test="yanSe != null  and yanSe != ''  ">yan_se = #{yanSe},</if>
+            <if test="jingDu != null  and jingDu != ''  ">jing_du = #{jingDu},</if>
+            <if test="chiCunGuiGe != null  and chiCunGuiGe != ''  ">chi_cun_gui_ge = #{chiCunGuiGe},</if>
+            <if test="seJi != null  and seJi != ''  ">se_ji = #{seJi},</if>
+            <if test="yingGuang != null  and yingGuang != ''  ">ying_guang = #{yingGuang},</if>
+            <if test="caiDu != null  and caiDu != ''  ">cai_du = #{caiDu},</if>
+            <if test="youHua != null  and youHua != ''  ">you_hua = #{youHua},</if>
+            <if test="huoCai != null  and huoCai != ''  ">huo_cai = #{huoCai},</if>
+            <if test="naiKa != null  and naiKa != ''  ">nai_ka = #{naiKa},</if>
+            <if test="huoQi != null  and huoQi != ''  ">huo_qi = #{huoQi},</if>
+            <if test="qieGong != null  and qieGong != ''  ">qie_gong = #{qieGong},</if>
+            <if test="jianDingJiGou != null  and jianDingJiGou != ''  ">jian_ding_ji_gou = #{jianDingJiGou},</if>
+            <if test="zhengShuHao != null  and zhengShuHao != ''  ">zheng_shu_hao = #{zhengShuHao},</if>
+            <if test="kuCun != null  ">ku_cun = #{kuCun},</if>
+            <if test="zhongLiang != null  and zhongLiang != ''  ">zhong_liang = #{zhongLiang},</if>
+            <if test="zhuShiZhong != null  and zhuShiZhong != ''  ">zhu_shi_zhong = #{zhuShiZhong},</if>
+            <if test="peiShiZhong != null  and peiShiZhong != ''  ">pei_shi_zhong = #{peiShiZhong},</if>
+            <if test="jinZhong != null  and jinZhong != ''  ">jin_zhong = #{jinZhong},</if>
+            <if test="guiJinShu != null  and guiJinShu != ''  ">gui_jin_shu = #{guiJinShu},</if>
+            <if test="gongYi != null  and gongYi != ''  ">gong_yi = #{gongYi},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="jinHuoJia != null  ">jin_huo_jia = #{jinHuoJia},</if>
+            <if test="bDuanJia != null  ">b_duan_jia = #{bDuanJia},</if>
+            <if test="cDuanJia != null  ">c_duan_jia = #{cDuanJia},</if>
+
+            <if test="officeJia != null  ">office_jia = #{officeJia},</if>
+
+
+            <if test="images != null  and images != ''  ">images = #{images},</if>
+            <if test="videos != null  and videos != ''  ">videos = #{videos},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+            <if test="approveTime != null  ">approve_time = #{approveTime},</if>
+            <if test="approveBy != null  and approveBy != ''  ">approve_by = #{approveBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteJewelryById" parameterType="Long">
+        delete from sys_jewelry where id = #{id}
+    </delete>
+	
+    <delete id="deleteJewelryByIds" parameterType="String">
+        delete from sys_jewelry where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="statusJewelryByIds" parameterType="String">
+        update   sys_jewelry
+        set `status`=#{newStatus}
+        where
+        `status`=#{oldStatus}
+        and id in
+        <foreach item="id" collection="ids" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
+
+
+    <select id="selectJewelryByHuoHao" parameterType="String" resultMap="JewelryResult">
+    <include refid="selectJewelryVo"/>
+         where huo_hao = #{huoHao}
+    </select>
+
+</mapper>

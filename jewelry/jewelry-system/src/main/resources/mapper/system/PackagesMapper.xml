@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.PackagesMapper">
+    
+    <resultMap type="Packages" id="PackagesResult">
+        <result property="id"    column="id"    />
+        <result property="packageName"    column="package_name"    />
+        <result property="roleName"    column="role_name"    />
+        <result property="packageType"    column="package_type"    />
+        <result property="packageDay"    column="package_day"    />
+        <result property="packageFee"    column="package_fee"    />
+        <result property="isDiscount"    column="is_discount"    />
+        <result property="discountFee"    column="discount_fee"    />
+        <result property="discountStart"    column="discount_start"    />
+        <result property="discountEnd"    column="discount_end"    />
+    </resultMap>
+	
+	<sql id="selectPackagesVo">
+        select id, package_name, role_name, package_type, package_day, package_fee, is_discount, discount_fee, discount_start, discount_end from sys_packages
+    </sql>
+	
+    <select id="selectPackagesList" parameterType="Packages" resultMap="PackagesResult">
+        <include refid="selectPackagesVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="packageName != null  and packageName != '' "> and package_name = #{packageName}</if>
+             <if test="roleName != null  and roleName != '' "> and role_name = #{roleName}</if>
+             <if test="packageType != null "> and package_type = #{packageType}</if>
+             <if test="packageDay != null "> and package_day = #{packageDay}</if>
+             <if test="packageFee != null "> and package_fee = #{packageFee}</if>
+             <if test="isDiscount != null "> and is_discount = #{isDiscount}</if>
+             <if test="discountFee != null "> and discount_fee = #{discountFee}</if>
+             <if test="discountStart != null "> and discount_start = #{discountStart}</if>
+             <if test="discountEnd != null "> and discount_end = #{discountEnd}</if>
+         </where>
+    </select>
+    
+    <select id="selectPackagesById" parameterType="Long" resultMap="PackagesResult">
+        <include refid="selectPackagesVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertPackages" parameterType="Packages" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_packages
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="packageName != null  and packageName != ''  ">package_name,</if>
+			<if test="roleName != null  and roleName != ''  ">role_name,</if>
+			<if test="packageType != null  ">package_type,</if>
+			<if test="packageDay != null  ">package_day,</if>
+			<if test="packageFee != null  ">package_fee,</if>
+			<if test="isDiscount != null  ">is_discount,</if>
+			<if test="discountFee != null  ">discount_fee,</if>
+			<if test="discountStart != null  ">discount_start,</if>
+			<if test="discountEnd != null  ">discount_end,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="packageName != null  and packageName != ''  ">#{packageName},</if>
+			<if test="roleName != null  and roleName != ''  ">#{roleName},</if>
+			<if test="packageType != null  ">#{packageType},</if>
+			<if test="packageDay != null  ">#{packageDay},</if>
+			<if test="packageFee != null  ">#{packageFee},</if>
+			<if test="isDiscount != null  ">#{isDiscount},</if>
+			<if test="discountFee != null  ">#{discountFee},</if>
+			<if test="discountStart != null  ">#{discountStart},</if>
+			<if test="discountEnd != null  ">#{discountEnd},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updatePackages" parameterType="Packages">
+        update sys_packages
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="packageName != null  and packageName != ''  ">package_name = #{packageName},</if>
+            <if test="roleName != null  and roleName != ''  ">role_name = #{roleName},</if>
+            <if test="packageType != null  ">package_type = #{packageType},</if>
+            <if test="packageDay != null  ">package_day = #{packageDay},</if>
+            <if test="packageFee != null  ">package_fee = #{packageFee},</if>
+            <if test="isDiscount != null  ">is_discount = #{isDiscount},</if>
+            <if test="discountFee != null  ">discount_fee = #{discountFee},</if>
+            <if test="discountStart != null  ">discount_start = #{discountStart},</if>
+            <if test="discountEnd != null  ">discount_end = #{discountEnd},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deletePackagesById" parameterType="Long">
+        delete from sys_packages where id = #{id}
+    </delete>
+	
+    <delete id="deletePackagesByIds" parameterType="String">
+        delete from sys_packages where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

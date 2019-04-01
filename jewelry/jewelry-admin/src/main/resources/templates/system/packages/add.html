@@ -1,0 +1,117 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-packages-add">
+			<div class="form-group">
+				<label class="col-sm-3 control-label">套餐名称：</label>
+				<div class="col-sm-8">
+					<input id="packageName" name="packageName" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">用户类型：</label>
+				<div class="col-sm-8">
+					<label class="radio-box"> <input type="radio" name="roleName" value="C1" /> C1 </label>
+					<label class="radio-box"> <input type="radio" name="roleName" value="B1" /> B1 </label>
+					<label class="radio-box"> <input type="radio" name="roleName" value="B2" /> B2 </label>
+				</div>
+			</div>
+
+
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">套餐类型：</label>
+				<div class="col-sm-8">
+					<label class="radio-box"> <input type="radio" name="packageType" value="1" /> 单次（单次为1小时） </label>
+					<label class="radio-box"> <input type="radio" name="packageType" value="2" checked/> 时间 </label>
+				</div>
+			</div>
+
+
+			<div class="form-group" >
+				<label class="col-sm-3 control-label">套餐天数：</label>
+				<div class="col-sm-8">
+					<input id="packageDay"  name="packageDay"  class="form-control" type="text">
+				</div>
+			</div>
+
+
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">套餐费用（元）：</label>
+				<div class="col-sm-8">
+					<input id="packageFee" name="packageFee" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">是否优惠：</label>
+				<div class="col-sm-8">
+					<label class="radio-box"> <input type="radio" name="isDiscount" value="1" checked/> 有 </label>
+					<label class="radio-box"> <input type="radio" name="isDiscount" value="0" /> 无</label>
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">限时优惠价（元）：</label>
+				<div class="col-sm-8">
+					<input id="discountFee" name="discountFee" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">限时优惠时间：</label>
+				<div class="col-sm-8 select-time">
+
+					<input type="text" style="width:100px;" class="form-control" id="startTime" placeholder="开始时间" name="discountStart"/>
+					<span>-</span>
+					<input type="text" style="width:100px;" class="form-control" id="endTime" placeholder="结束时间" name="discountEnd"/>
+
+				</div>
+			</div>
+
+		</form>
+	</div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/packages"
+		$("#form-packages-add").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/add", $('#form-packages-add').serialize());
+	        }
+	    }
+
+
+
+		$(function() {
+			$("input[name='packageType']").on('ifChecked', function(event){
+				var packageType = $(event.target).val();
+				if (packageType == "1") {
+					$("#packageDay").parents(".form-group").hide();
+				} else if (packageType == "2") {
+					$("#packageDay").parents(".form-group").show();
+				}
+			});
+
+			$("input[name='isDiscount']").on('ifChecked', function(event){
+				var isDiscount = $(event.target).val();
+				if (isDiscount == "0") {
+					$("#discountFee").parents(".form-group").hide();
+					$("#startTime").parents(".form-group").hide();
+				} else if (isDiscount == "1") {
+					$("#discountFee").parents(".form-group").show();
+					$("#startTime").parents(".form-group").show();
+				}
+			});
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.EmployMapper">
+    
+    <resultMap type="Employ" id="EmployResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="content"    column="content"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+	
+	<sql id="selectEmployVo">
+        select id, title, content, update_by from sys_employ
+    </sql>
+	
+    <select id="selectEmployList" parameterType="Employ" resultMap="EmployResult">
+        <include refid="selectEmployVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="title != null  and title != '' "> and title = #{title}</if>
+             <if test="content != null  and content != '' "> and content = #{content}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectEmployById" parameterType="Long" resultMap="EmployResult">
+        <include refid="selectEmployVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertEmploy" parameterType="Employ" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_employ
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="title != null  and title != ''  ">title,</if>
+			<if test="content != null  and content != ''  ">content,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="title != null  and title != ''  ">#{title},</if>
+			<if test="content != null  and content != ''  ">#{content},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateEmploy" parameterType="Employ">
+        update sys_employ
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null  and title != ''  ">title = #{title},</if>
+            <if test="content != null  and content != ''  ">content = #{content},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteEmployById" parameterType="Long">
+        delete from sys_employ where id = #{id}
+    </delete>
+	
+    <delete id="deleteEmployByIds" parameterType="String">
+        delete from sys_employ where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

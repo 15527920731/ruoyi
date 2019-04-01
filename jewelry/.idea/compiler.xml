@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="jewelry-admin" />
+        <module name="jewelry-common" />
+        <module name="jewelry-framework" />
+        <module name="jewelry-generator" />
+        <module name="jewelry-quartz" />
+        <module name="jewelry-system" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="jewelry" target="1.8" />
+      <module name="jewelry-admin" target="1.8" />
+      <module name="jewelry-common" target="1.8" />
+      <module name="jewelry-framework" target="1.8" />
+      <module name="jewelry-generator" target="1.8" />
+      <module name="jewelry-quartz" target="1.8" />
+      <module name="jewelry-system" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

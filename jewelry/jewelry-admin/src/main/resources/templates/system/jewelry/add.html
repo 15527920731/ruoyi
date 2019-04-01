@@ -1,0 +1,270 @@
+<!DOCTYPE HTML>
+<html  lang="zh" xmlns:th="http://www.thymeleaf.org">
+<meta charset="utf-8">
+<head th:include="include :: header"></head>
+<body class="white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight ibox-content">
+        <form class="form-horizontal m" id="form-jewelry-add">
+
+			<input type="hidden" value="无色珠宝" name="productType">
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label" style="padding-right: 0;">库存地：</label>
+				<div class="col-sm-2">
+					<select name="kuCunDi" class="form-control">
+						<option value="境内">境内</option>
+						<option value="境外">境外</option>
+						<option value="现存">现存</option>
+					</select>
+				</div>
+				<label class="col-sm-2 control-label" style="padding-right: 0;">宝石琢形：</label>
+				<div class="col-sm-2">
+					<input id="baoShiZhuoXing" name="baoShiZhuoXing" class="form-control" type="text">
+				</div>
+				<label class="col-sm-2 control-label" style="padding-right: 0;">货号：</label>
+				<div class="col-sm-2">
+					<input id="huoHao" name="huoHao" class="form-control" type="text">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">抛光：</label>
+				<div class="col-sm-2">
+					<input id="paoGuang" name="paoGuang" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">对称性：</label>
+				<div class="col-sm-2">
+					<input id="duiChengXing" name="duiChengXing" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">状态：</label>
+				<div class="col-sm-2">
+					<input id="zhuangTai" name="zhuangTai" class="form-control" type="text">
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">颜色：</label>
+				<div class="col-sm-2">
+					<input id="yanSe" name="yanSe" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">净度：</label>
+				<div class="col-sm-2">
+					<input id="jingDu" name="jingDu" class="form-control" type="text">
+				</div>
+
+
+				<label class="col-sm-2 control-label">尺寸规格：</label>
+				<div class="col-sm-2">
+					<input id="chiCunGuiGe" name="chiCunGuiGe" class="form-control" type="text">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">荧光：</label>
+				<div class="col-sm-2">
+					<input id="yingGuang" name="yingGuang" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">奶咖：</label>
+				<div class="col-sm-2">
+					<input id="naiKa" name="naiKa" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">货期：</label>
+				<div class="col-sm-2">
+					<input id="huoQi" name="huoQi" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">切工：</label>
+				<div class="col-sm-2">
+					<input id="qieGong" name="qieGong" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">鉴定机构：</label>
+				<div class="col-sm-2">
+					<input id="jianDingJiGou" name="jianDingJiGou" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">证书号：</label>
+				<div class="col-sm-2">
+					<input id="zhengShuHao" name="zhengShuHao" class="form-control" type="text">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">库存：</label>
+				<div class="col-sm-2">
+					<input id="kuCun" name="kuCun" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">上架状态：</label>
+				<div class="col-sm-2">
+					<select name="status" class="form-control">
+						<option value="待审核">待审核</option>
+						<option value="已上架">已上架</option>
+						<option value="已下架">已下架</option>
+					</select>
+				</div>
+
+				<label class="col-sm-2 control-label">重量：</label>
+				<div class="col-sm-2">
+					<input id="zhongLiang" name="zhongLiang" class="form-control" type="text">
+				</div>
+			</div>
+
+
+
+
+			<div class="form-group">
+				<label class="col-sm-2 control-label">进货价：</label>
+				<div class="col-sm-2">
+					<input id="jinHuoJia" name="jinHuoJia" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">B端价格：</label>
+				<div class="col-sm-2">
+					<input id="bDuanJia" name="bDuanJia" class="form-control" type="text">
+				</div>
+
+				<label class="col-sm-2 control-label">C端价格：</label>
+				<div class="col-sm-2">
+					<input id="cDuanJia" name="cDuanJia" class="form-control" type="text">
+				</div>
+
+			</div>
+
+
+
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">品牌：</label>
+				<div class="col-sm-8">
+					<input id="pinPai" name="pinPai" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">版型：</label>
+				<div class="col-sm-8">
+					<input id="banXing" name="banXing" class="form-control" type="text">
+				</div>
+			</div>
+
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">色调：</label>
+				<div class="col-sm-8">
+					<input id="seDiao" name="seDiao" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">色级：</label>
+				<div class="col-sm-8">
+					<input id="seJi" name="seJi" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">彩度：</label>
+				<div class="col-sm-8">
+					<input id="caiDu" name="caiDu" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">优化：</label>
+				<div class="col-sm-8">
+					<input id="youHua" name="youHua" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">火彩：</label>
+				<div class="col-sm-8">
+					<input id="huoCai" name="huoCai" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label">主石重：</label>
+				<div class="col-sm-8">
+					<input id="zhuShiZhong" name="zhuShiZhong" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">配石重：</label>
+				<div class="col-sm-8">
+					<input id="peiShiZhong" name="peiShiZhong" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">金重：</label>
+				<div class="col-sm-8">
+					<input id="jinZhong" name="jinZhong" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">贵金属：</label>
+				<div class="col-sm-8">
+					<input id="guiJinShu" name="guiJinShu" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">工艺：</label>
+				<div class="col-sm-8">
+					<input id="gongYi" name="gongYi" class="form-control" type="text">
+				</div>
+			</div>
+
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">图片：</label>
+				<div class="col-sm-8">
+					<input id="images" name="images" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">	
+				<label class="col-sm-3 control-label">视频：</label>
+				<div class="col-sm-8">
+					<input id="videos" name="videos" class="form-control" type="text">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label">创建时间：</label>
+				<div class="col-sm-8">
+					<input id="createTime" name="createTime" class="form-control" type="text">
+				</div>
+			</div>
+
+
+		</form>
+	</div>
+    <div th:include="include::footer"></div>
+    <script type="text/javascript">
+		var prefix = ctx + "system/jewelry"
+		$("#form-jewelry-add").validate({
+			rules:{
+				xxxx:{
+					required:true,
+				},
+			},
+			focusCleanup: true
+		});
+		
+		function submitHandler() {
+	        if ($.validate.form()) {
+	            $.operate.save(prefix + "/add", $('#form-jewelry-add').serialize());
+	        }
+	    }
+	</script>
+</body>
+</html>

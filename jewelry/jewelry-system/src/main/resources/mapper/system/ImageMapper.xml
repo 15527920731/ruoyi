@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.ImageMapper">
+    
+    <resultMap type="Image" id="ImageResult">
+        <result property="id"    column="id"    />
+        <result property="huoHao"    column="huo_hao"    />
+        <result property="url"    column="url"    />
+        <result property="createTime"    column="create_time"    />
+    </resultMap>
+	
+	<sql id="selectImageVo">
+        select id, huo_hao, url, create_time from sys_image
+    </sql>
+	
+    <select id="selectImageList" parameterType="Image" resultMap="ImageResult">
+        <include refid="selectImageVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="huoHao != null  and huoHao != '' "> and huo_hao = #{huoHao}</if>
+             <if test="url != null  and url != '' "> and url = #{url}</if>
+             <if test="createTime != null "> and create_time = #{createTime}</if>
+         </where>
+    </select>
+    
+    <select id="selectImageById" parameterType="Long" resultMap="ImageResult">
+        <include refid="selectImageVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertImage" parameterType="Image">
+        insert into sys_image
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">id,</if>
+			<if test="huoHao != null  and huoHao != ''  ">huo_hao,</if>
+			<if test="url != null  and url != ''  ">url,</if>
+			<if test="createTime != null  ">create_time,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null  ">#{id},</if>
+			<if test="huoHao != null  and huoHao != ''  ">#{huoHao},</if>
+			<if test="url != null  and url != ''  ">#{url},</if>
+			<if test="createTime != null  ">#{createTime},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateImage" parameterType="Image">
+        update sys_image
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="huoHao != null  and huoHao != ''  ">huo_hao = #{huoHao},</if>
+            <if test="url != null  and url != ''  ">url = #{url},</if>
+            <if test="createTime != null  ">create_time = #{createTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteImageById" parameterType="Long">
+        delete from sys_image where id = #{id}
+    </delete>
+	
+    <delete id="deleteImageByIds" parameterType="String">
+        delete from sys_image where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <select id="selectImageURL" resultType="String" parameterType="String">
+        select `url` from sys_image where huo_hao=#{huoHao}
+    </select>
+
+</mapper>

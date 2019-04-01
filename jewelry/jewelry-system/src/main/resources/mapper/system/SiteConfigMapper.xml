@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jewelry.system.mapper.SiteConfigMapper">
+    
+    <resultMap type="SiteConfig" id="SiteConfigResult">
+        <result property="id"    column="id"    />
+        <result property="title"    column="title"    />
+        <result property="key"    column="key"    />
+        <result property="summary"    column="summary"    />
+        <result property="declare"    column="declare"    />
+        <result property="recordNumber1"    column="record_number1"    />
+        <result property="recordNumber2"    column="record_number2"    />
+        <result property="email"    column="email"    />
+        <result property="logo"    column="logo"    />
+        <result property="updateBy"    column="update_by"    />
+    </resultMap>
+	
+	<sql id="selectSiteConfigVo">
+        select `id`, `title`, `key`, `summary`, `declare`, record_number1, record_number2, `email`, `logo`, `update_by` from sys_site_config
+    </sql>
+	
+    <select id="selectSiteConfigList" parameterType="SiteConfig" resultMap="SiteConfigResult">
+        <include refid="selectSiteConfigVo"/>
+        <where>  
+            <if test="id != null "> and id = #{id}</if>
+             <if test="title != null  and title != '' "> and title = #{title}</if>
+             <if test="key != null  and key != '' "> and key = #{key}</if>
+             <if test="summary != null  and summary != '' "> and summary = #{summary}</if>
+             <if test="declare != null  and declare != '' "> and declare = #{declare}</if>
+             <if test="recordNumber1 != null  and recordNumber1 != '' "> and record_number1 = #{recordNumber1}</if>
+             <if test="recordNumber2 != null  and recordNumber2 != '' "> and record_number2 = #{recordNumber2}</if>
+             <if test="email != null  and email != '' "> and email = #{email}</if>
+             <if test="logo != null  and logo != '' "> and logo = #{logo}</if>
+             <if test="updateBy != null  and updateBy != '' "> and update_by = #{updateBy}</if>
+         </where>
+    </select>
+    
+    <select id="selectSiteConfigById" parameterType="Long" resultMap="SiteConfigResult">
+        <include refid="selectSiteConfigVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertSiteConfig" parameterType="SiteConfig" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_site_config
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="title != null  and title != ''  ">title,</if>
+			<if test="key != null  and key != ''  ">key,</if>
+			<if test="summary != null  and summary != ''  ">summary,</if>
+			<if test="declare != null  and declare != ''  ">declare,</if>
+			<if test="recordNumber1 != null  and recordNumber1 != ''  ">record_number1,</if>
+			<if test="recordNumber2 != null  and recordNumber2 != ''  ">record_number2,</if>
+			<if test="email != null  and email != ''  ">email,</if>
+			<if test="logo != null  and logo != ''  ">logo,</if>
+			<if test="updateBy != null  and updateBy != ''  ">update_by,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="title != null  and title != ''  ">#{title},</if>
+			<if test="key != null  and key != ''  ">#{key},</if>
+			<if test="summary != null  and summary != ''  ">#{summary},</if>
+			<if test="declare != null  and declare != ''  ">#{declare},</if>
+			<if test="recordNumber1 != null  and recordNumber1 != ''  ">#{recordNumber1},</if>
+			<if test="recordNumber2 != null  and recordNumber2 != ''  ">#{recordNumber2},</if>
+			<if test="email != null  and email != ''  ">#{email},</if>
+			<if test="logo != null  and logo != ''  ">#{logo},</if>
+			<if test="updateBy != null  and updateBy != ''  ">#{updateBy},</if>
+         </trim>
+    </insert>
+	 
+    <update id="updateSiteConfig" parameterType="SiteConfig">
+        update sys_site_config
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="title != null  and title != ''  ">`title` = #{title},</if>
+            <if test="key != null  and key != ''  ">`key` = #{key},</if>
+            <if test="summary != null  and summary != ''  ">`summary` = #{summary},</if>
+            <if test="declare != null  and declare != ''  ">`declare` = #{declare},</if>
+            <if test="recordNumber1 != null  and recordNumber1 != ''  ">record_number1 = #{recordNumber1},</if>
+            <if test="recordNumber2 != null  and recordNumber2 != ''  ">record_number2 = #{recordNumber2},</if>
+            <if test="email != null  and email != ''  ">`email` = #{email},</if>
+            <if test="logo != null  and logo != ''  ">`logo` = #{logo},</if>
+            <if test="updateBy != null  and updateBy != ''  ">update_by = #{updateBy},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+	<delete id="deleteSiteConfigById" parameterType="Long">
+        delete from sys_site_config where id = #{id}
+    </delete>
+	
+    <delete id="deleteSiteConfigByIds" parameterType="String">
+        delete from sys_site_config where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    
+</mapper>

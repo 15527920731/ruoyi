@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/jewelry.iml" filepath="$PROJECT_DIR$/jewelry.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jewelry-admin/jewelry-admin.iml" filepath="$PROJECT_DIR$/jewelry-admin/jewelry-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jewelry-common/jewelry-common.iml" filepath="$PROJECT_DIR$/jewelry-common/jewelry-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jewelry-framework/jewelry-framework.iml" filepath="$PROJECT_DIR$/jewelry-framework/jewelry-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jewelry-generator/jewelry-generator.iml" filepath="$PROJECT_DIR$/jewelry-generator/jewelry-generator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jewelry-quartz/jewelry-quartz.iml" filepath="$PROJECT_DIR$/jewelry-quartz/jewelry-quartz.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jewelry-system/jewelry-system.iml" filepath="$PROJECT_DIR$/jewelry-system/jewelry-system.iml" />
+    </modules>
+  </component>
+</project>
